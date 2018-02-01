@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
-<%@	include file="header.jsp"%>
+<%@	include file="../header.jsp"%>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -38,10 +39,47 @@
 
 <body>
 
-	HELLO
+	<br/>
+	<h4>Lista pracowników do zapisu na dane szkolenie:</h4><br/>
+	<p>id: ${training.id}</p>
+	<p>nazwa: ${training.name}</p>
+	<p>typ: ${training.type}</p>
+	<p>ilość zapisanych osób: ${emplListSize}</p>
+	${message}
+
+		<div class="panel panel-primary">
+		
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>imię</th>
+						<th>nazwisko</th>
+						<th>typ stanowiska</th>
+						<th>jednostka</th>
+						<th>akcja</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${employees}" var="employee">
+						<tr>
+							<th>${employee.id}</th>
+							<td>${employee.name}</td>
+							<td>${employee.lastName}</td>
+							<td>${employee.type}</td>
+							<td>${employee.unit.name}</td>
+							<td>
+								<a href='<c:url value = '/training/registration/add/${employee.id}/${training.id}'/>'>zapisz</a>	
+							</td>				
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	
 
 </body>
 
-<%@	include file="footer.jsp"%>
+<%@	include file="../footer.jsp"%>
 
 </html>
