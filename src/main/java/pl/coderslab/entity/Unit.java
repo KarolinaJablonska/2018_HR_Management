@@ -39,10 +39,6 @@ public class Unit {
 	@JoinColumn(name = "parentUnit_id")
 	private Unit parentUnit;
 	
-	@ManyToMany
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private List<Unit> children;
-	
 	@ManyToOne
 	@JoinColumn(name = "manager_id")
 	private Employee manager;
@@ -138,13 +134,6 @@ public class Unit {
 		this.tBLeft = tBLeft;
 	}
 
-	public List<Unit> getChildren() {
-		return children;
-	}
-
-	public void setChildren(List<Unit> children) {
-		this.children = children;
-	}
 
 	public double getCostStartSum() {
 		return costStartSum;
@@ -169,5 +158,11 @@ public class Unit {
 	public void setCostFinalSum(double costFinalSum) {
 		this.costFinalSum = costFinalSum;
 	}
+
+	@Override
+	public String toString() {
+		return "Unit [name=" + name + "]";
+	}
+	
 		
 }

@@ -40,7 +40,7 @@
 
 <body>
 
-	<h3>Wpisz dane szkolenia</h3>
+	<h3>Wprowadź nowy podział budżetu</h3>
 	<form:form modelAttribute="training" method="post">
 		<form:hidden path="id" />
 		

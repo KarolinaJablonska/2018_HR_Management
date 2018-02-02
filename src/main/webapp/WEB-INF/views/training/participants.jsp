@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -22,7 +23,7 @@
 		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
 		crossorigin="anonymous">
 
-	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="../css/style.css" />
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script

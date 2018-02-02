@@ -8,6 +8,7 @@ public class DTO {
 	
 	static public Collection<String> uniteTypes(){
 		List<String> uniteTypes = new ArrayList<>();
+		uniteTypes.add("zarząd");
 		uniteTypes.add("jednostka");
 		uniteTypes.add("wydział");
 		uniteTypes.add("dział");

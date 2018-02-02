@@ -1,3 +1,19 @@
 body{
-	background-color: #ccffcc;
+	background-color: #88BDBC;
+	color: black;
+	margin: 2px;
+}
+
+img{
+	margin-top: 10px;
+	margin-left: 5px;
+}
+
+form{
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+nav{
+	background-color: #254E58;
 }

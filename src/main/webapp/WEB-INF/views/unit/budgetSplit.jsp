@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -41,47 +40,51 @@
 <body>
 
 	<br/>
-	<h4>Baza szkoleniowa</h4><br/>
+	<h4>Uzupełnij podział budżetu:</h4><br/>
 	${message}
-	
-		<div class="panel panel-primary">
-		
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>nazwa</th>
-						<th>typ</th>
-						<th>kwartał</th>
-						<th>rok</th>
-						<th>ilość osób</th>
-						<th>koszt startowy</th>
-						<th>koszt planowany</th>
-						<th>koszt wykonania</th>
-						<th>akcja</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${trainings}" var="training">
+
+			<div class="panel panel-primary">
+			
+				<table class="table table-hover">
+					<thead>
 						<tr>
-							<th>${training.id}</th>
-							<td>${training.name}</td>
-							<td>${training.type}</td>
-							<td>${training.quarter}</td>
-							<td>${training.year}</td>
-							<td>${training.getEmployees().size()}</td>
-							<td>${training.costStart}</td>
-							<td>${training.costPlanned}</td>
-							<td>${training.costFinal}</td>
-							<td>
-								<a href='<c:url value = '/training/delete/${training.id}'/>'>usuń</a> / 
-								<a href='<c:url value = '/training/update/${training.id}'/>'>edytuj</a>
-							</td>
+							<th>zarząd</th>
+							<th>jednostka</th>
+							<th>wydział</th>
+							<th>dział</th>
+							<th>budżet</th>
+							<th>rozdysponowano</th>
+							<th>pozostało</th>
+							<th>akcja</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+					</thead>
+					<tbody>
+						<tr> 
+							<td>${board.name}</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>${board.trainingBudget}</td>
+							<td>${board.tBDistributed}</td>
+							<td>${board.tBLeft}</td>
+							<td><a href='<c:url value = '/unit/editUnitBudget/${board.id}'/>'>edytuj</a></td>
+						</tr>
+						<!-- jednostki -->
+						<c:forEach items="${units}" var="unit">
+							<tr>
+								<td></td>
+								<td><c:if test="${unit.unitType=='jednostka'}">${unit.name}</c:if></td>
+								<td><c:if test="${unit.unitType=='wydział'}">${unit.name}</c:if></td>
+								<td><c:if test="${unit.unitType=='dział'}">${unit.name}</c:if></td>
+								<td>${unit.trainingBudget}</td>
+								<td>${unit.tBDistributed}</td>
+								<td>${unit.tBLeft}</td>
+								<td><a href='<c:url value = '/unit/editUnitBudget/${unit.id}'/>'>edytuj</a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 </body>
 
 <%@	include file="../footer.jsp"%>

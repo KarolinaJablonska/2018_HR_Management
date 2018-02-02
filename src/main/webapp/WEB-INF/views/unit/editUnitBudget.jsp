@@ -40,69 +40,22 @@
 
 <body>
 
-	<h3>Wpisz dane szkolenia</h3>
-	<form:form modelAttribute="training" method="post">
+	<h3>Wpisz dane jednostki</h3>
+<form:form modelAttribute="unit" method="post">
 		<form:hidden path="id" />
 		
 		<div class="form-group">
 			<label>nazwa:</label><br/>
 			<form:errors path="name"/>
-			<form:input path="name" value="${training.name}"/>
-		</div>
+			<form:input path="name" value="${unit.name}"/>
+		</div>	
 		
 		<div class="form-group">
-			<label>typ:</label><br/>
-			<form:select path="type">
-				<form:option value="--">Select</form:option>
-            	<form:options items="${trainingTypes}"></form:options>
-			</form:select>
-		</div>
-		
-		
-		<div class="form-group">
-			<label>kwartał:</label><br/>
-			<form:select path="quarter">
-            	<form:options items="${quarters}"></form:options>
-			</form:select>
-		</div>
-		
-		
-		<div class="form-group">
-			<label>rok:</label><br/>
-			<form:errors path="year"/>
-			<form:input path="year" value="${training.year}"/>
-		</div>
-		
-		
-		<div class="form-group">
-			<label>budżet jednostki:</label><br/>
-			<form:select path="unitBudget.id">
-            	<form:options items="${units}" itemValue="id" itemLabel="name"></form:options>
-			</form:select>
-		</div>
-		
-		
-		<div class="form-group">
-			<label>koszt startowy:</label><br/>
-			<form:errors path="costStart"/>
-			<form:input path="costStart" value="${training.costStart}"/>
-		</div>
-	
-	
-		<div class="form-group">
-			<label>koszt planowany:</label><br/>
-			<form:errors path="costPlanned"/>
-			<form:input path="costPlanned" value="${training.costPlanned}"/>
-		</div>
-
-
-		<div class="form-group">
-			<label>koszt ostateczny:</label><br/>
-			<form:errors path="costFinal"/>
-			<form:input path="costFinal" value="${training.costFinal}"/>
-		</div>
-	
-	
+			<label>budżet:</label><br/>
+			<form:errors path="trainingBudget"/>
+			<form:input path="trainingBudget" value="${unit.trainingBudget}"/>
+		</div>	
+			
 		<br/><form:button type="submit">zapisz</form:button>
 	</form:form>
 	

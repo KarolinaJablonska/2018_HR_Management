@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@	taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -58,7 +58,7 @@
 		   		 <ul class="dropdown-menu">
 		     		<li><a href="../../../2018_HR_Management/training/add">Dodaj nowe szkolenie</a></li>
 		      		<li><a href="../../../2018_HR_Management/training/showAll">Pokaż listę wszystkich szkoleń</a></li>
-		      		<li><a href="../../../2018_HR_Management/training/budgetSplit">Podział budżetu szkoleniowego</a></li>
+		      		<li><a href="../../../2018_HR_Management/unit/budgetSplit">Podział budżetu szkoleniowego</a></li>
 		      		<li><a href="../../../2018_HR_Management/training/table">Szczegółowa tabela szkoleniowa</a></li>
 		   		</ul>
 	 	</li>

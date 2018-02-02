@@ -43,7 +43,7 @@ public class UnitController {
 		model.addAttribute("parentUnits", parentUnits);
 
 		// getting managers
-		List<Employee> managers = emplRepo.findByType("(kierownik)|(dyrektor)");
+		List<Employee> managers = emplRepo.findAll();
 		model.addAttribute("managers", managers);
 
 		// getting dictionary
@@ -59,23 +59,6 @@ public class UnitController {
 		if (result.hasErrors()) {
 			return "unit/unitForm";
 		} else {
-			Unit parent = unit.getParentUnit();
-			System.out.println("TEST 0 " + parent.getName());
-			System.out.println("TEST 1 " + parent.getId());
-			List<Unit> parentChildren;	
-			try {
-				parentChildren = parent.getChildren();
-				System.out.println("TEST 2 " + parentChildren.size());
-			} catch (NullPointerException e) {
-				parentChildren = new ArrayList<>();
-				System.out.println("TEST 3 " + parentChildren.size());
-			}
-			System.out.println("TEST 4 " + parentChildren.size());
-			System.out.println("TEST 5 " + unit.getId());
-			parentChildren.add(unit);
-			parentRepo.save(parent);
-			System.out.println("TEST 6 " + parentChildren.size());
-			System.out.println("TEST 7 " + parent.getName());
 			unitRepo.save(unit);
 			return "redirect:/unit/showAll";
 		}
@@ -91,6 +74,10 @@ public class UnitController {
 		List<Unit> parentUnits = unitRepo.findAll();
 		model.addAttribute("parentUnits", parentUnits);
 
+		// getting managers
+		List<Employee> managers = emplRepo.findAll();
+		model.addAttribute("managers", managers);
+
 		// getting dictionary
 		List<String> uniteTypes = (List<String>) DTO.uniteTypes();
 		model.addAttribute("uniteTypes", uniteTypes);
@@ -103,15 +90,6 @@ public class UnitController {
 		if (result.hasErrors()) {
 			return "unit/unitForm";
 		} else {
-			Unit parent = unit.getParentUnit();
-			List<Unit> parentChildren;	
-			try {
-				parentChildren = parent.getChildren();
-			} catch (NullPointerException e) {
-				parentChildren = new ArrayList<>();
-			}
-			parentChildren.add(unit);
-			unitRepo.save(parent);
 			unitRepo.save(unit);
 			return "redirect:/unit/showAll";
 		}
@@ -134,4 +112,66 @@ public class UnitController {
 		model.addAttribute("units", units);
 		return "unit/details";
 	}
+
+	// budget split
+	@GetMapping("/budgetSplit")
+	public String budget(Model model) {
+
+		Unit board = unitRepo.findOneByName("Zarząd");
+		model.addAttribute("units", getStructure(board));
+		model.addAttribute("board", board);
+
+		return "unit/budgetSplit";
+	}
+
+	// budget edit - > show form
+	@GetMapping("/editUnitBudget/{id}")
+	public String editUnitBudget(@PathVariable int id, Model model) {
+		Unit unit = unitRepo.findById(id);
+		model.addAttribute(unit);
+		return "unit/editUnitBudget";
+	}
+
+	// budget edit - > show form
+	@PostMapping("/editUnitBudget/{id}")
+	public String editUnitBudget(@ModelAttribute Unit unitModel) {
+		Unit unit = unitRepo.findById(unitModel.getId());
+
+		if (!unit.getUnitType().equals("zarząd")) {
+			Unit parent = unit.getParentUnit();
+			double budget = unitModel.getTrainingBudget();
+			double parentBudget = parent.getTrainingBudget();
+			double newParentBudget = parentBudget - budget;
+
+			unit.setTrainingBudget(budget);
+			parent.setTrainingBudget(newParentBudget);
+
+			List<Unit> children = unitRepo.getChildren(parent);
+			double distributed = 0;
+			for (Unit child : children) {
+				distributed = distributed + child.getTrainingBudget() + budget;
+			}
+			parent.settBDistributed(distributed);
+			parent.settBLeft(newParentBudget - distributed);
+			unitRepo.save(parent);
+		} else {
+			unit.setTrainingBudget(unitModel.getTrainingBudget());
+		}
+
+		unitRepo.save(unit);
+		return "redirect:/unit/budgetSplit";
+	}
+
+	// getting structure
+	private List<Unit> getStructure(Unit parent) {
+		List<Unit> result = unitRepo.getChildren(parent);
+		List<Unit> tmpResult = new ArrayList<>();
+		for (Unit unit : result) {
+			//tmpResult.addAll(unitRepo.getChildren(unit));
+			tmpResult.addAll(getStructure(unit));
+		}
+		result.addAll(tmpResult);
+		return result;
+	}
+
 }

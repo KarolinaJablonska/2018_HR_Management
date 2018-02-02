@@ -28,8 +28,7 @@ public class HomeController {
 
 		if (employees.isEmpty() && units.isEmpty()) {
 			Employee employee = new Employee();
-			employee.setName("Piotr");
-			employee.setLastName("Kowalski");
+			employee.setName("Rafał");
 			employee.setType("prezes");
 			emplRepo.save(employee);
 

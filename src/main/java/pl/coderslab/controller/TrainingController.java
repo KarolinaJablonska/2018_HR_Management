@@ -192,21 +192,13 @@ public class TrainingController {
 		return "redirect:training/participants/" + trainingId;
 	}
 
-	// budget split
-	@GetMapping("/budgetSplit")
-	public String budget(Model model) {
-		List<Unit> units = unitRepo.findByUnitType("jednostka");
-		Unit board = unitRepo.findOneByName("Zarząd");
-		model.addAttribute("units", units);
-		model.addAttribute("board", board);
-		return "training/budgetSplit";
-	}
-
 	// show main training table
 	@GetMapping("/table")
 	public String table(Model model) {
 		List<Training> trainings = trainingRepo.findAll();
+		List<Unit> units = unitRepo.findAll();
 		model.addAttribute("trainings", trainings);
+		model.addAttribute("units", units);
 		return "training/trainingManager";
 	}
 
