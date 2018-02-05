@@ -162,12 +162,19 @@ public class UnitController {
 		return "redirect:/unit/budgetSplit";
 	}
 
+	/**
+	 * By LESZEK SZTOKINIER
+	 * @param parent
+	 * @return
+	 */
 	// getting structure
 	private List<Unit> getStructure(Unit parent) {
-		List<Unit> result = unitRepo.getChildren(parent);
+		List<Unit> result = new ArrayList<>();
+		//unitRepo.getChildren(parent);
 		List<Unit> tmpResult = new ArrayList<>();
-		for (Unit unit : result) {
+		for (Unit unit : unitRepo.getChildren(parent)) {
 			//tmpResult.addAll(unitRepo.getChildren(unit));
+			tmpResult.add(unit);
 			tmpResult.addAll(getStructure(unit));
 		}
 		result.addAll(tmpResult);
