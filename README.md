@@ -1,4 +1,4 @@
 # 2018_HR_Management
 
 
-<img src="src/main/webapp/printscreen/1.png" width="60%" height="60%">
+<img src="src/main/webapp/printscreen/1.png" width="70%" height="70%">
