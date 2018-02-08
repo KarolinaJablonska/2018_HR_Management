@@ -1,4 +1,4 @@
 # 2018_HR_Management
 
 
-<img src="printscreen/1.png">
+<img src="src/main/webapp/printscreen/1.png">
