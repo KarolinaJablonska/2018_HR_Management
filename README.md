@@ -1,6 +1,6 @@
-# 2018_HR_Management
+## 2018_HR_Management
 
-## FUNCTIONALITY (actualization 8.02.2018)
+### FUNCTIONALITY (actualization 8.02.2018)
 Human Resources Management web application mainly for training budget management.
 It is designed for HR employees.
 
@@ -18,12 +18,12 @@ Functionality:
 [Java, SQL, Hibernate, JSP, Spring, Spring Data, MVC, (Maven Project)]
 
 
-## DATABASE (actualization 8.02.2018)
+### DATABASE (actualization 8.02.2018)
 
 <img src="src/main/webapp/printscreen/19.png" width="70%" height="70%">
 
 
-## PRINTSCREENS (actualization 8.02.2018)
+### PRINTSCREENS (actualization 8.02.2018)
 
 <img src="src/main/webapp/printscreen/1.png" width="70%" height="70%">
 <img src="src/main/webapp/printscreen/2.png" width="70%" height="70%">
