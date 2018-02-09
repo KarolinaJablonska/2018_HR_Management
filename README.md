@@ -5,7 +5,7 @@ Human Resources Management web application mainly for training budget management
 It is designed for HR employees.
 
 Functionality:
-	* add / modify employees
+	1. add / modify employees
 	* add / modify / delete unit
 	* add / modify / delete training
 	* show all employees / units / trainings
